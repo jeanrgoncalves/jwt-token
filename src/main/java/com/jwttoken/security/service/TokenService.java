@@ -1,4 +1,4 @@
-package security.service;
+package com.jwttoken.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -6,7 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import security.entity.User;
+import com.jwttoken.security.entity.User;
 
 import java.util.Date;
 
@@ -42,7 +42,7 @@ public class TokenService {
         }
     }
 
-    public Integer getTokenId(String token) {
+    public Integer getUserIdFromToken(String token) {
         Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         return Integer.valueOf(body.getSubject());
     }

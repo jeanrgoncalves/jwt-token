@@ -1,7 +1,7 @@
-package security.repository;
+package com.jwttoken.security.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import security.entity.User;
+import com.jwttoken.security.entity.User;
 
 import java.util.Optional;
 

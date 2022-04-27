@@ -1,13 +1,15 @@
-package controller;
+package com.jwttoken.controller;
 
+import com.jwttoken.security.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import security.entity.User;
-import security.service.UserService;
+import com.jwttoken.security.service.UserService;
+
+import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +20,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody LoginDTO loginDTO) {
-        return ResponseEntity.ok(service.save(loginDTO));
+        User savedUser = service.save(loginDTO);
+        return ResponseEntity.created(URI.create("/users/" + savedUser.getId())).build();
     }
 
 }

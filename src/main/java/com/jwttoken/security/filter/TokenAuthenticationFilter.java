@@ -1,12 +1,12 @@
-package security.filter;
+package com.jwttoken.security.filter;
 
 import com.google.common.base.Strings;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import security.repository.UserRepository;
-import security.service.TokenService;
+import com.jwttoken.security.repository.UserRepository;
+import com.jwttoken.security.service.TokenService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -30,8 +30,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void authenticate(String tokenFromHeader) {
-        Integer id = tokenService.getTokenId(tokenFromHeader);
-
+        Integer id = tokenService.getUserIdFromToken(tokenFromHeader);
         userRepository.findById(id).ifPresent(user -> {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getProfiles());
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

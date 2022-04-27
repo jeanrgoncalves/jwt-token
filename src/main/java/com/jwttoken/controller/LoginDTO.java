@@ -1,4 +1,4 @@
-package controller;
+package com.jwttoken.controller;
 
 import lombok.Data;
 

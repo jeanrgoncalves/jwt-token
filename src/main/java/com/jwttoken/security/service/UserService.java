@@ -1,11 +1,11 @@
-package security.service;
+package com.jwttoken.security.service;
 
-import controller.LoginDTO;
+import com.jwttoken.controller.LoginDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import security.entity.User;
-import security.repository.UserRepository;
+import com.jwttoken.security.entity.User;
+import com.jwttoken.security.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
